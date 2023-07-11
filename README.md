@@ -24,7 +24,9 @@ docker build -t httptest .
 ## Test page on HTTP3
 
 ```shell
-docker run -i --init --cap-add=SYS_ADMIN --rm -v $(pwd)/data/http3:/home/pptruser/output -e TEST_PAGE_URL=https://www.google.com httptest \
+docker run -i --init --cap-add=SYS_ADMIN --rm \
+ -v $(pwd)/data/http3:/home/pptruser/output \
+ -e TEST_PAGE_URL=https://www.google.com httptest \
  node test.js --enable-quic --origin-to-force-quic-on=www.google.com:443
 ```
 
@@ -35,7 +37,9 @@ Note that the port is mandatory, even though if it is the default one `443`.
 ## Test page on HTTP2
 
 ```shell
-docker run -i --init --cap-add=SYS_ADMIN --rm -v $(pwd)/data/http2:/home/pptruser/output TEST_PAGE_URL=https://www.google.com httptest \
+docker run -i --init --cap-add=SYS_ADMIN --rm \
+ -v $(pwd)/data/http2:/home/pptruser/output \
+ -e TEST_PAGE_URL=https://www.google.com httptest \
  node test.js --disable-quic
 ```
 
